@@ -1,5 +1,7 @@
 library(tidyverse)
 library(gtsummary)
+install.packages("broom.helpers")
+library(broom.helpers)
 
 nlsy_cols <- c("glasses", "eyesight", "sleep_wkdy", "sleep_wknd",
 							 "id", "nsibs", "samp", "race_eth", "sex", "region",
@@ -23,6 +25,7 @@ tbl_uvregression(
 							eyesight_cat, income, age_bir),
 	method = lm)
 
+# Logistic Regression
 
 tbl_uvregression(
 	nlsy,
@@ -32,6 +35,15 @@ tbl_uvregression(
 	method = glm,
 	method.args = list(family = binomial()),
 	exponentiate = TRUE)
+
+# Class Practice - Create a univariate regression table looking at the association between sex (sex_cat)
+# as the x = variable and each of nsibs, sleep_wkdy, and sleep_wknd, and income.
+
+tbl_uvregression(
+	nlsy,
+	x = sex_cat,
+	include = c(nsibs, sleep_wkdy, sleep_wknd, income),
+	method = lm)
 
 
 ## Multivariable regressions
@@ -48,6 +60,12 @@ linear_model_int <- lm(income ~ sex_cat*age_bir + race_eth_cat,
 
 logistic_model <- glm(glasses ~ eyesight_cat + sex_cat + income,
 											data = nlsy, family = binomial())
+
+# Fit a Poisson regression (family = poisson()) for the number of siblings, using at least 3 predictors of your choice.
+# Create a nice table displaying your Poisson regression and its exponentiated coefficients.
+
+family = poisson()
+
 
 
 ## Tables
