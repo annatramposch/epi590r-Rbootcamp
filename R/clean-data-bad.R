@@ -3,7 +3,16 @@ nlsy_cols <- c("glasses", "eyesight", "sleep_wkdy", "sleep_wknd",
 							 "income", "res_1980", "res_2002", "age_bir")
 
 library(tidyverse)
-setwd("~/Documents/Teaching/Emory/epi590r-inclass/data/raw/")
+library(here)
+	# Bad practice for storage: setwd("/Users/annatramposch/Desktop/EPI 590R 👩🏻‍💻 R Bootcamp/R Bootcamp/data/raw")
+
+data <- read_csv(here::here("data", "raw", "nlsy.cvs")
+
+								 here::here()
+								 getwd()
+
+								 setwd("data")
+
 nlsy <- read_csv("nlsy.csv",
 								 na = c("-1", "-2", "-3", "-4", "-5", "-998"),
 								 skip = 1, col_names = nlsy_cols)
