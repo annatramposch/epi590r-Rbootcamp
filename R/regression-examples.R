@@ -25,6 +25,13 @@ tbl_uvregression(
 							eyesight_cat, income, age_bir),
 	method = lm)
 
+		# Really like doing
+		lm(income ~ sex_cat, data = nlsy)
+		lm(income ~ race_eth_cat, data = nlsy)
+		lm(income ~ eyesight_cat, data = nlsy)
+		lm(income ~ income, data = nlsy)
+		lm(income ~ age_bir, data = nlsy)
+
 # Logistic Regression
 
 tbl_uvregression(
@@ -36,7 +43,7 @@ tbl_uvregression(
 	method.args = list(family = binomial()),
 	exponentiate = TRUE)
 
-# Class Practice - Create a univariate regression table looking at the association between sex (sex_cat)
+## Class Practice - Create a univariate regression table looking at the association between sex (sex_cat)
 # as the x = variable and each of nsibs, sleep_wkdy, and sleep_wknd, and income.
 
 tbl_uvregression(
@@ -45,6 +52,11 @@ tbl_uvregression(
 	include = c(nsibs, sleep_wkdy, sleep_wknd, income),
 	method = lm)
 
+		# Really like doing
+		lm(income ~ sex_cat, data = nlsy)
+		lm(nsibs ~ sex_cat, data = nlsy)
+		lm(sleep_wkdy ~ sex_cat, data = nlsy)
+		lm(sleep_wknd ~ sex_cat, data = nlsy)
 
 ## Multivariable regressions
 
@@ -64,8 +76,17 @@ logistic_model <- glm(glasses ~ eyesight_cat + sex_cat + income,
 # Fit a Poisson regression (family = poisson()) for the number of siblings, using at least 3 predictors of your choice.
 # Create a nice table displaying your Poisson regression and its exponentiated coefficients.
 
-family = poisson()
+poisson_model <- glm(nsibs ~ sex_cat + race_eth_cat + age_bir,
+											data = nlsy, family = poisson())
 
+tbl_regression(
+	poisson_model,
+	intercept = TRUE,
+	label = list(
+		sex_cat ~ "Sex",
+		race_eth_cat ~ "Race/ethnicity",
+		age_bir ~ "Age at first birth"
+	))
 
 
 ## Tables
