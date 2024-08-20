@@ -1,5 +1,6 @@
 library(tidyverse)
 library(broom)
+library(tidycat)
 
 nlsy_cols <- c("glasses", "eyesight", "sleep_wkdy", "sleep_wknd",
 							 "id", "nsibs", "samp", "race_eth", "sex", "region",
