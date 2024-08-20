@@ -2,7 +2,7 @@
 title: "gtsummary in quarto"
 format: 
   html:
-    theme: minty
+    theme: solar
 execute:
   echo: false
 ---
@@ -88,14 +88,18 @@ From that table, pull out the that value and include in the text using inline_te
 ```{r}
 #| label: tbl-three
 #| tbl-cap: "Study Population Characteristics (Median), by Sex"
-tbl_summary(
+table3 <- tbl_summary(
   nlsy,
+  by = sex_cat,
   include = sleep_wknd,
   label = list(sleep_wknd ~ "Hours slept on Weekends (Median)"),
   missing_text = "Missing",
 	statistic = list(
 		sleep_wknd = "{median}")
-	)
+	) |>
+  add_overall (last= TRUE)
+table3
+inline_text(table3, variable = "sleep_wknd", column = "stat_0")
 ```
 
 @tbl-three shows that the median hours slept on weekends by the study participants was `r stats$median_sleep_wknd`

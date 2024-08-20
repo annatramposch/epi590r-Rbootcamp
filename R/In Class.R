@@ -5,19 +5,43 @@
 # Date Created: Mon 8/19/2014
 # Last Update: Mon 8/19/2014
 
+--------------------------------------------------------------------------------------------------------------
 
-# Changed R color theme
+# RTHEMES
+
+
 library(rsthemes)
 
+# Set default themes
+
 set_theme_light ("Flat White {rsthemes}")
-set_theme_dark()
+set_theme_dark("One Dark {rsthemes}")
+	"One Dark {rsthemes}"
+	"base16 Chalk {rsthemes}"
+	"Material Darker {rsthemes}"
+	"Serendipity Dark {rsthemes}"
+	"Elm dark {rsthemes}"
+	"Night Owl Dark {rsthemes}"
+
 set_theme_favorite
 
-#Toggle themes on and off
+# Toggle themes on and off, or put on an auto schedule
 use_theme_light(quietly = FALSE)
 use_theme_dark(quietly = FALSE)
 use_theme_toggle()
-use_theme_auto()
+use_theme_auto(
+	dark_start = "19:00",
+	dark_end = "8:00",
+	lat = NULL,
+	lon = NULL,
+	quietly = FALSE
+)
+
+# Apply a theme or scroll through the installed themes
+try_rsthemes("Serendipity Dark {rsthemes}")
+try_rsthemes(style = "all", include_base16 = TRUE, delay = 0)
+list_rsthemes(style = "all", include_base16 = TRUE, list_installed = TRUE)
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -252,14 +276,58 @@ tbl_merge(list(tbl_no_int, tbl_int),
 
 
 --------------------------------------------------------------------------------------------------------------
-# DAY 2
+# # DAY TWO: What we covered in class
 
-# Quarto
+# QUARTO
+--------
 
-# can make slides and presentations based on R script with code & text interspersed
-
-
+# can make slides, documents & presentations based on R script with code & text interspersed
 # Quarto (newer) vs R Markdown (older)
 # render vs knit
 
 
+# FUNCTIONS
+-----------
+	# start out with a number to test
+	x <- 3
+
+	# name your function <- and write your function equation
+	square <- function(x) {
+	x^2
+	}
+
+	# test it out
+	square(x)
+	square(53)
+	53^2 # does this match? yes.
+
+
+	# Another Example - New Mean
+
+	new_mean <- function(x) {
+		n <- length(x)
+		mean_val <- sum(x) / n
+		return(mean_val)
+	}
+
+	# test it out
+	b <- c(1,2,3,4,5)
+	new_mean(b)
+
+
+	# Another Exmaple - Raise
+
+	x <- 3
+	y <- 4
+	x^y # this is the equation
+
+	raise <- function(base, power) {
+	answer <- base ^ power
+	return(answer)
+	}
+
+
+	# test with
+	raise(base = 2, power = 4)
+	# should give you
+	2^4
