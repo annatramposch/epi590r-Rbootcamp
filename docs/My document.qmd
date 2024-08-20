@@ -3,11 +3,20 @@ title: "My document"
 author: "Anna Tramposch"
 format: html
 editor: visual
+execute:
+  eval: false
+  echo: false
 ---
 
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Formatting
+
+> In the document options, eval: false and echo: false mean that the entire document will not evaluate or print code (just shows text).
+>
+> Other formatting options can be found here: <https://quarto.org/docs/reference/formats/html.html>
 
 ## Running Code
 
@@ -24,4 +33,18 @@ You can add options to executable code like this
 2 * 2
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+-   The `echo: false` option disables the printing of code (only output is displayed).
+
+Other valuable chunk options
+
+-   `#| eval: false`: Don’t evaluate this chunk! Really helpful if you’re trying to isolate an error, or have a chunk that takes a long time
+
+-   `#| error: true`: Render this *even if* the chunk causes an error
+
+-   `#| cache: true`: Store the results of this chunk so that it doesn’t need to re-run every time, as long as there are no changes
+
+-   `#| warning: false`: Don’t print warnings
+
+-   `#| message: false`: Don’t print messages
+
+-   `#| label: Label Name Here`: give a section a label
