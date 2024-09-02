@@ -45,6 +45,7 @@ tbl_summary(
 @tbl-one shows descriptive statistics about the study population and @tbl-two shows the same data but with the variable names edited.
 
 
+
 ```{r}
 #| label: tbl-two
 #| tbl-cap: "Study Population Characteristics, by Sex"

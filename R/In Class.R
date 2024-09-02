@@ -3,7 +3,7 @@
 # Contact: anna.tramposch@emory.edu
 # Github: annatramposch, annatramposch@gmail.com
 # Date Created: Mon 8/19/2014
-# Last Update: Mon 8/19/2014
+# Last Update: Tues 8/20/2014
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -52,12 +52,13 @@ list_rsthemes(style = "all", include_base16 = TRUE, list_installed = TRUE)
 --------------------
 
 library(tidyverse)
+library(here)
 library(gtsummary)
 
 nlsy_cols <- c("glasses", "eyesight", "sleep_wkdy", "sleep_wknd",
 							 "id", "nsibs", "samp", "race_eth", "sex", "region",
 							 "income", "res_1980", "res_2002", "age_bir")
-nlsy <- read_csv(here::here("data", "raw", "nlsy.csv"),
+nlsy <- read_csv(here("data", "raw", "nlsy.csv"),
 								 na = c("-1", "-2", "-3", "-4", "-5", "-998"),
 								 skip = 1, col_names = nlsy_cols) |>
 	mutate(region_cat = factor(region, labels = c("Northeast", "North Central", "South", "West")),
@@ -321,13 +322,17 @@ tbl_merge(list(tbl_no_int, tbl_int),
 	y <- 4
 	x^y # this is the equation
 
-	raise <- function(base, power) {
+	raise <- function(base, power = 2) {
 	answer <- base ^ power
 	return(answer)
 	}
-
 
 	# test with
 	raise(base = 2, power = 4)
 	# should give you
 	2^4
+	# if I don't specify power, will it default to 2?
+	raise(base = 5)
+
+
+
